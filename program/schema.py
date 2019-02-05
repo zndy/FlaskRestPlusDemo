@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields, post_load
 
-from program.pojo import ThreeValues
+from program.pojo import ThreeValues, MyPoint
 
 
 class ThreeValuesSchema(Schema):
@@ -11,3 +11,12 @@ class ThreeValuesSchema(Schema):
     @post_load
     def make_obj(self, data):
         return ThreeValues(**data)
+
+
+class MyPointSchema(Schema):
+    x = fields.Float()
+    y = fields.Float()
+
+    @post_load
+    def make_obj(self, data):
+        return MyPoint(**data)

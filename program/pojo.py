@@ -6,3 +6,12 @@ class ThreeValues(object):
 
     def __repr__(self):
         return "ThreeValues: %s,%s,%s" % (self.value1, self.value2, self.value3)
+
+
+class MyPoint(object):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __repr__(self):
+        return "MyPoint: %s,%s" % (self.x, self.y)
