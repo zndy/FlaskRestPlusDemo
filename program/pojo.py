@@ -13,5 +13,6 @@ class MyPoint(object):
         self.x = x
         self.y = y
 
+
     def __repr__(self):
         return "MyPoint: %s,%s" % (self.x, self.y)
