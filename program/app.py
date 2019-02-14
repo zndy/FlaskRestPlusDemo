@@ -4,6 +4,7 @@ from flask_restplus import Resource, Api
 from program.pojo import MyPoint
 from program.schema import ThreeValuesSchema, MyPointSchema
 
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -26,7 +27,9 @@ class Test1(Resource):
         print(json_result)
         return json_result
 
-@api.route('/three2')
+# input threeValues Json format, output points list Json format
+# input example: {"value1": 100.0,"value2": 200.0,"value3": 300.0}
+@api.route('/three2four')
 class Test2(Resource):
     def post(self):
         json_data = request.json
@@ -41,6 +44,18 @@ class Test2(Resource):
         pointSchema = MyPointSchema()
         json_result = pointSchema.dumps(points, many=True)
         return json_result
+
+# input threeValues Json format, output points list Json format
+# input example: [{"x": 100.0, "y": 200.0}, {"x": 50.0, "y": 100.0}, {"x": 33.333333333333336, "y": 66.66666666666667}, {"x": 25.0, "y": 50.0}]
+@api.route('/four2three')
+class Test3(Resource):
+    def post(self):
+        json_data = request.json
+        print("json_data: " + str(json_data))
+        pointSchema = MyPointSchema()
+        myPoints = pointSchema.loads(json_data, many=True).data
+        print(myPoints)
+        return ""
 
 if __name__ == '__main__':
     app.run(debug=True)
